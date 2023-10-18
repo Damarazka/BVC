@@ -30,8 +30,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val inputWidth = edtWidth.text.toString().trim()
             val inputLength = edtLength.text.toString().trim()
             val inputHeight = edtHeight.text.toString().trim()
-            val volume = inputWidth.toDouble() * inputLength.toDouble() * inputHeight.toDouble()
-            tvResult.text = volume.toString()
+            var isEmptyField = false
+
+            if (inputWidth.isEmpty()) {
+                isEmptyField = true
+                edtWidth.error = "This field must be fill"
+            }
+
+            if (inputLength.isEmpty()) {
+                isEmptyField = true
+                edtLength.error = "This field must be fill"
+            }
+
+            if (inputHeight.isEmpty()) {
+                isEmptyField = true
+                edtHeight.error = "This field must be fill"
+            }
+            if (!isEmptyField) {
+                val volume = inputWidth.toDouble() * inputLength.toDouble() * inputHeight.toDouble()
+                tvResult.text = volume.toString()
+            }
         }
     }
 }
